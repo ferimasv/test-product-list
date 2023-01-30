@@ -1,5 +1,5 @@
-export function Counter(n: number) {
-    let count = n;
+export function Counter(number: number) {
+    let count = number;
     return () => {
         return ++count;
     }
