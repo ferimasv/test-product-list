@@ -21,8 +21,8 @@ const Parameters: FC<ParametersProps> = ({product}) => {
         <Dropdown>
             <Dropdown.Toggle size="sm" variant="light"></Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item size="sm" onClick={handleUpdateProduct}>Изменить</Dropdown.Item>
-                <Dropdown.Item size="sm" onClick={handleDeleteProduct}>Удалить</Dropdown.Item>
+                <Dropdown.Item onClick={handleUpdateProduct}>Изменить</Dropdown.Item>
+                <Dropdown.Item onClick={handleDeleteProduct}>Удалить</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
