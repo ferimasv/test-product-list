@@ -4,6 +4,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from "react-redux";
 import {store} from "./store/store";
+import PopUp from "./components/PopUp/PopUp";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -11,5 +12,6 @@ const root = ReactDOM.createRoot(
 root.render(
     <Provider store={store}>
         <App />
+        <PopUp/>
     </Provider>
 );
