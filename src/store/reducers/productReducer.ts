@@ -14,6 +14,9 @@ const defaultProduct: IProductState = {
     products: [
         { id: '1', name: 'йогурт', purchased: false },
         { id: '2', name: 'клубника', purchased: true },
+        { id: '3', name: 'яблоко', purchased: true },
+        { id: '4', name: 'апельсин', purchased: true },
+        { id: '5', name: 'яйца десяток', purchased: true },
     ],
 };
 
@@ -37,7 +40,8 @@ export const productReducer = (
         case PRODUCT_TYPE.CREATE:
             return state
         case PRODUCT_TYPE.UPDATE:
-            return state
+            const updatesProducts = state.products.map((item) => item.id === action.payload.id ? action.payload : item)
+            return {...state, products: updatesProducts }
         case PRODUCT_TYPE.DELETE:
             return state
         default:
