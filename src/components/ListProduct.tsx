@@ -9,7 +9,7 @@ interface ListProductProps {
 
 const ListProduct: FC<ListProductProps> = ({ products }) => {
     return (
-        <ListGroup variant="flush">
+        <ListGroup >
             {products.map((item) => (
                 <Product key={item.id} product={item}/>
             ))}
