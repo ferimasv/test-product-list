@@ -1,10 +1,10 @@
 import React from 'react';
+import {PagesRouter} from "./router/PagesRouter";
+import {RouterProvider} from "react-router-dom";
 
 const App = () => {
     return (
-        <div>
-          
-        </div>
+        <RouterProvider router={PagesRouter}/>
     );
 };
 
