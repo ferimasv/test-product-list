@@ -6,14 +6,14 @@ interface dispatchProps {
     product: IProduct,
 }
 
-export function createProduct({dispatch, product}: dispatchProps) {
+export function createProductDispatch({dispatch, product}: dispatchProps) {
     dispatch(PRODUCT_ACTION.CREATE(product))
 }
 
-export function deleteProduct({dispatch, product}: dispatchProps) {
+export function deleteProductDispatch({dispatch, product}: dispatchProps) {
     dispatch(PRODUCT_ACTION.DELETE(product))
 }
 
-export function updateProduct({dispatch, product}: dispatchProps) {
-    dispatch(PRODUCT_ACTION.UPDATE({...product}))
+export function updateProductDispatch({dispatch, product}: dispatchProps) {
+    dispatch(PRODUCT_ACTION.UPDATE(product))
 }
