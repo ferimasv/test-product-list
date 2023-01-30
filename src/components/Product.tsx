@@ -3,6 +3,7 @@ import {Form, ListGroup} from "react-bootstrap";
 import IProduct from "../types/IProduct";
 import {useDispatch} from "react-redux";
 import {updateProductDispatch} from "../store/dispatches/productDispatch";
+import Parameters from "./Parameters";
 
 interface ProductProps {
     product: IProduct,
@@ -28,6 +29,7 @@ const Product: FC<ProductProps> = ({product}) => {
                 </Form.Check.Label>
             </Form.Check>
 
+            <Parameters product={product}/>
         </ListGroup.Item>
     );
 };

@@ -43,7 +43,8 @@ export const productReducer = (
             const updatesProducts = state.products.map((item) => item.id === action.payload.id ? action.payload : item)
             return {...state, products: updatesProducts }
         case PRODUCT_TYPE.DELETE:
-            return state
+            const filtersProducts = state.products.filter((item) => item.id !== action.payload.id)
+            return {...state, products: filtersProducts }
         default:
             return state
     }
