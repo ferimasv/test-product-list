@@ -31,7 +31,7 @@ interface UpdatePopupContextProps {
 
 const UpdatePopupContext: FC<UpdatePopupContextProps> = ({children}) => {
     const [show, setShow] = useState<boolean>(false);
-    const [ name, setName ] = useState<string>('');
+    const [name, setName] = useState<string>('');
     const [updatesProduct, setUpdatesProduct] = useState<IProduct>(emptyProduct);
 
     function setUpdatesProductAndChangeShow(product: IProduct) {
