@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import CreatePopUpContext from "./CreatePopUpContext";
+import UpdatePopUpContext from "./UpdatePopUpContext";
 
 interface ContextProps {
     children: React.ReactNode,
@@ -8,7 +9,9 @@ interface ContextProps {
 const Context: FC<ContextProps> = ({children}) => {
     return (
         <CreatePopUpContext>
-            {children}
+            <UpdatePopUpContext>
+                {children}
+            </UpdatePopUpContext>
         </CreatePopUpContext>
     );
 };

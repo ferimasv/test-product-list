@@ -1,9 +1,13 @@
 import React from 'react';
 import CreatePopUp from "./CreatePopUp";
+import UpdatePopUp from "./UpdatePopUp";
 
 const PopUp = () => {
     return (
-        <CreatePopUp/>
+        <div>
+            <CreatePopUp/>
+            <UpdatePopUp/>
+        </div>
     );
 };
 

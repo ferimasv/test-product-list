@@ -1,31 +1,31 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import {useDispatch} from "react-redux";
-import {createProductDispatch} from "../../store/dispatches/productDispatch";
-import {CreatePopUpState} from "../../context/CreatePopUpContext";
+import {updateProductDispatch} from "../../store/dispatches/productDispatch";
+import {UpdatePopUpState} from "../../context/UpdatePopUpContext";
 
-const CreatePopUp = () => {
+const UpdatePopUp = () => {
     const dispatch = useDispatch();
-    const {show, name, setName, id, toggleShow} = CreatePopUpState();
+    const {show, toggleShow, updatesProduct, name, setName} = UpdatePopUpState();
     const [ warn, setWarn ] = useState<boolean>(false);
 
-    function handleCreateProductAndCloseModal() {
+    function handleUpdateProductAndCloseModal() {
         const trimName = name.trim();
         if (!trimName) {
             setWarn(true);
             return
         }
-        createProductDispatch({ dispatch, product: {id: id().toString(), name: trimName, purchased: false} });
+        updateProductDispatch({ dispatch, product: {...updatesProduct, name: trimName} });
         toggleShow();
-        setName('');
         setWarn(false);
-    };
+    }
+
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.currentTarget.value)
 
     return (
         <Modal show={show} onHide={toggleShow}>
             <Modal.Header>
-                <Modal.Title>Добавить</Modal.Title>
+                <Modal.Title>Изменение</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form >
@@ -40,12 +40,12 @@ const CreatePopUp = () => {
                 <Button variant="secondary" onClick={toggleShow}>
                     Отмена
                 </Button>
-                <Button variant="primary" onClick={handleCreateProductAndCloseModal}>
-                    Добавить
+                <Button variant="primary" onClick={handleUpdateProductAndCloseModal}>
+                    Изменить
                 </Button>
             </Modal.Footer>
         </Modal>
     );
 };
 
-export default CreatePopUp;
+export default UpdatePopUp;
