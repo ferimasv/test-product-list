@@ -1,6 +1,6 @@
 import {actions} from "../actions";
 import IProduct from "../../types/IProduct";
-import {COOKIES_TYPE, getCookies, setCookies} from "../../cookies/cookies";
+import {COOKIES_TYPE, getCookies, setCookies} from "../../helpers/cookies";
 
 
 export interface IProductState {
@@ -18,7 +18,6 @@ const defaultProduct: IProductState = {
         { id: '2', name: 'клубника', purchased: false },
         { id: '3', name: 'яблоко', purchased: false },
         { id: '4', name: 'апельсин', purchased: false },
-        { id: '5', name: 'яйца десяток', purchased: false },
     ]
 };
 

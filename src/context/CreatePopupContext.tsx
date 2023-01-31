@@ -2,7 +2,7 @@ import React, {createContext, FC, useContext, useState} from 'react';
 import {Counter} from "../helpers/Counter";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 
-interface ICreatePopUpContext {
+interface ICreatePopupContext {
     show: boolean;
     name: string;
     id: () => number;
@@ -19,14 +19,14 @@ const defaultState = {
     toggleShow: () => {},
 };
 
-const CreatePopUp = createContext<ICreatePopUpContext>(defaultState);
+const CreatePopup = createContext<ICreatePopupContext>(defaultState);
 
-interface CreatePopUpContextProps {
+interface CreatePopupContextProps {
     children: React.ReactNode,
 }
 
 
-const CreatePopUpContext: FC<CreatePopUpContextProps> = ({children}) => {
+const CreatePopupContext: FC<CreatePopupContextProps> = ({children}) => {
     const { products } = useTypedSelector(state => state.product);
     const [show, setShow] = useState<boolean>(false);
     const [name, setName] = useState<string>('');
@@ -37,7 +37,7 @@ const CreatePopUpContext: FC<CreatePopUpContextProps> = ({children}) => {
     }
 
     return (
-        <CreatePopUp.Provider
+        <CreatePopup.Provider
             value={{
                 show, toggleShow,
                 name, setName,
@@ -45,12 +45,12 @@ const CreatePopUpContext: FC<CreatePopUpContextProps> = ({children}) => {
             }}
         >
             {children}
-        </CreatePopUp.Provider>
+        </CreatePopup.Provider>
     );
 };
 
-export function CreatePopUpState() {
-    return useContext(CreatePopUp);
+export function CreatePopupState() {
+    return useContext(CreatePopup);
 }
 
-export default CreatePopUpContext;
+export default CreatePopupContext;

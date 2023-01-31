@@ -1,7 +1,7 @@
 import React, {createContext, FC, useContext, useState} from 'react';
 import IProduct from "../types/IProduct";
 
-interface IUpdatePopUpContext {
+interface IUpdatePopupContext {
     show: boolean;
     toggleShow: () => void;
     updatesProduct: IProduct;
@@ -23,13 +23,13 @@ const defaultState = {
     setUpdatesProductAndChangeShow: (state: IProduct) => {},
 };
 
-const UpdatePopUp = createContext<IUpdatePopUpContext>(defaultState);
+const UpdatePopup = createContext<IUpdatePopupContext>(defaultState);
 
-interface UpdatePopUpContextProps {
+interface UpdatePopupContextProps {
     children: React.ReactNode,
 }
 
-const UpdatePopUpContext: FC<UpdatePopUpContextProps> = ({children}) => {
+const UpdatePopupContext: FC<UpdatePopupContextProps> = ({children}) => {
     const [show, setShow] = useState<boolean>(false);
     const [ name, setName ] = useState<string>('');
     const [updatesProduct, setUpdatesProduct] = useState<IProduct>(emptyProduct);
@@ -45,19 +45,19 @@ const UpdatePopUpContext: FC<UpdatePopUpContextProps> = ({children}) => {
     }
 
     return (
-        <UpdatePopUp.Provider
+        <UpdatePopup.Provider
             value={{
                 show, toggleShow,
                 name, setName,
                 updatesProduct, setUpdatesProduct,
                 setUpdatesProductAndChangeShow
             }}
-        >{children}</UpdatePopUp.Provider>
+        >{children}</UpdatePopup.Provider>
     );
 };
 
-export function UpdatePopUpState() {
-    return useContext(UpdatePopUp);
+export function UpdatePopupState() {
+    return useContext(UpdatePopup);
 }
 
-export default UpdatePopUpContext;
+export default UpdatePopupContext;

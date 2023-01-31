@@ -15,10 +15,9 @@ const All = () => {
                 <Col>
                     <h5 className="fs-3 fw-normal">Общее количество: {products.length}</h5>
                 </Col>
-                <Col></Col>
                 <Col>
                     <Button size="sm" onClick={() => clearProductDispatch(dispatch)} variant="light" className="w-100">
-                        <h5 className="text-uppercase fw-normal">Отчистить список</h5>
+                        <h5 className="text-uppercase fw-normal">Очистить список</h5>
                     </Button>
                 </Col>
             </Row>

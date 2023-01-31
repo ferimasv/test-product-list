@@ -18,7 +18,7 @@ const Product: FC<ProductProps> = ({product}) => {
 
     return (
         <ListGroup.Item className="d-flex" variant="light">
-            <Form.Check className="w-100 overflow-hidden p-0" id={`default-checkbox-${id}`}>
+            <Form.Check className="w-100 p-0 overflow-hidden" id={`default-checkbox-${id}`}>
                 <Form.Check.Input className="m-1" checked={purchased} onChange={togglePurchased} isValid={purchased}/>
                 <Form.Check.Label className="">
                     {purchased ?
