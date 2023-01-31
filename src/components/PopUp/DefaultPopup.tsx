@@ -1,7 +1,7 @@
 import React, {FC, FormEvent, useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import {useDispatch} from "react-redux";
-import {createProductDispatch, dispatchProps} from "../../store/dispatches/productDispatch";
+import {dispatchProps} from "../../store/dispatches/productDispatch";
 import IProduct from "../../types/IProduct";
 
 interface DefaultPopupProps {

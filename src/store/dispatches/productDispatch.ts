@@ -1,7 +1,7 @@
 import IProduct from "../../types/IProduct";
 import {IProductAction, PRODUCT_ACTION} from "../reducers/productReducer";
 
-interface dispatchProps {
+export interface dispatchProps {
     dispatch: (arg0: IProductAction) => void,
     product: IProduct,
 }
