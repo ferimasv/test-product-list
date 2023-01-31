@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import {useDispatch} from "react-redux";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {Counter} from "../../helpers/Counter";
 import {createProductDispatch} from "../../store/dispatches/productDispatch";
+import {CreatePopUpState} from "../../context/CreatePopUpContext";
 
 const CreatePopUp = () => {
     const dispatch = useDispatch();
-    const { products } = useTypedSelector(state => state.product);
-    const [show, setShow] = useState<boolean>(true);
-    const [name, setName] = useState<string>('');
-    const id = Counter(Number(products.at(-1)?.id ?? 0));
-
-    function toggleShow() {
-        setShow((prev) => !prev);
-    }
+    const {show, name, setName, id, toggleShow} = CreatePopUpState();
+    const [ warn, setWarn ] = useState<boolean>(false);
 
     function handleCreateProductAndCloseModal() {
-        createProductDispatch({ dispatch, product: {id: id().toString(), name, purchased: false} });
+        const trimName = name.trim();
+        if (!trimName) {
+            setWarn(true);
+            return
+        }
+        createProductDispatch({ dispatch, product: {id: id().toString(), name: trimName, purchased: false} });
+        toggleShow();
         setName('');
+        setWarn(false);
     };
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.currentTarget.value)
 
@@ -28,10 +28,11 @@ const CreatePopUp = () => {
                 <Modal.Title>Добавить</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form>
+                <Form >
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Название</Form.Label>
-                        <Form.Control placeholder="йогурт" value={name} onChange={handleChangeName}/>
+                        <Form.Control isInvalid={warn} placeholder="йогурт" value={name} onChange={handleChangeName}/>
+                        <div className="invalid-feedback">Это поле обязательное</div>
                     </Form.Group>
                 </Form>
             </Modal.Body>

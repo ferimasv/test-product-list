@@ -1,4 +1,4 @@
-import React, {createContext, FC, useState} from 'react';
+import React, {createContext, FC, useContext, useState} from 'react';
 import {Counter} from "../helpers/Counter";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 
@@ -48,5 +48,9 @@ const CreatePopUpContext: FC<CreatePopUpContextProps> = ({children}) => {
         </CreatePopUp.Provider>
     );
 };
+
+export function CreatePopUpState() {
+    return useContext(CreatePopUp);
+}
 
 export default CreatePopUpContext;

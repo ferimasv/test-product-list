@@ -1,14 +1,12 @@
 import React from 'react';
 import ListProduct from "../components/ListProduct";
-import {Button, Col, Row, Toast} from "react-bootstrap";
-import {useDispatch} from "react-redux";
+import {Button, Col, Row} from "react-bootstrap";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {CreatePopUpState} from "../context/CreatePopUpContext";
 
 const Active = () => {
-    const dispatch = useDispatch();
     const { products } = useTypedSelector(state => state.product);
-
-    const handleShow = () => {};
+    const {toggleShow} = CreatePopUpState();
 
     return (
         <div>
@@ -18,7 +16,7 @@ const Active = () => {
                 </Col>
                 <Col></Col>
                 <Col>
-                    <Button size="sm" onClick={handleShow} variant="light" className="w-100">
+                    <Button size="sm" onClick={toggleShow} variant="light" className="w-100">
                         <h5 className="text-uppercase fw-normal">Добавить</h5>
                     </Button>
                 </Col>
