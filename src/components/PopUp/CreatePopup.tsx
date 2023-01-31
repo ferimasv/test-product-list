@@ -8,7 +8,7 @@ const CreatePopup = () => {
 
     return (
         <DefaultPopup
-            type="Изменить"
+            type="Добавить"
             show={show}
             toggleShow={toggleShow}
             id={id}

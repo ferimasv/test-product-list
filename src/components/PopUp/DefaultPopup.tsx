@@ -16,12 +16,17 @@ interface DefaultPopupProps {
 }
 
 const DefaultPopup: FC<DefaultPopupProps> = ({type, show, name, setName, id, updatesProduct, toggleShow, action}) => {
+    const MAX_LENGTH_NAME = 40;
     const dispatch = useDispatch();
     const [ warn, setWarn ] = useState<boolean>(false);
 
     function handleActionAndCloseModal() {
         const trimName = name.trim();
         if (!trimName) {
+            setWarn(true);
+            return
+        }
+        if (trimName.length > MAX_LENGTH_NAME) {
             setWarn(true);
             return
         }
@@ -36,6 +41,7 @@ const DefaultPopup: FC<DefaultPopupProps> = ({type, show, name, setName, id, upd
                 throw Error();
             }
         }
+
         action({ dispatch, product });
         toggleShow();
         setName('');
@@ -59,7 +65,7 @@ const DefaultPopup: FC<DefaultPopupProps> = ({type, show, name, setName, id, upd
                     <Form.Group className="mb-3">
                         <Form.Label>Название</Form.Label>
                         <Form.Control isInvalid={warn} placeholder="йогурт" value={name} onChange={handleChangeName}/>
-                        <div className="invalid-feedback">Это поле обязательное</div>
+                        <div className="invalid-feedback">{`Это поле обязательное, длина не более ${MAX_LENGTH_NAME} символов`}</div>
                     </Form.Group>
                 </Form>
             </Modal.Body>
