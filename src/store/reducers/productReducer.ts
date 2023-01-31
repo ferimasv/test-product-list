@@ -1,5 +1,7 @@
 import {actions} from "../actions";
 import IProduct from "../../types/IProduct";
+import {COOKIES_TYPE, getCookies, setCookies} from "../../cookies/cookies";
+
 
 export interface IProductState {
     products: Array<IProduct>,
@@ -11,7 +13,7 @@ export interface IProductAction {
 }
 
 const defaultProduct: IProductState = {
-    products: [
+    products: getCookies<IProduct[]>(COOKIES_TYPE.LIST_PRODUCT) ?? [
         { id: '1', name: 'йогурт', purchased: false },
         { id: '2', name: 'клубника', purchased: true },
         { id: '3', name: 'яблоко', purchased: true },
@@ -37,7 +39,7 @@ export const productReducer = (
     action: IProductAction
 ): IProductState => {
     switch (action.type) {
-        case PRODUCT_TYPE.CREATE:
+        case PRODUCT_TYPE.CREATE: {
             const isExistInList = state.products.filter((item) => item.name === action.payload.name).length > 0;
             if (isExistInList) {
                 const updatesProducts = state.products.map((item) => {
@@ -46,14 +48,20 @@ export const productReducer = (
                     }
                     return item
                 })
-                return {...state, products: updatesProducts }
+                setCookies<IProduct[]>(COOKIES_TYPE.LIST_PRODUCT, updatesProducts);
+                return {...state, products: updatesProducts}
             }
-            return {...state, products: [...state.products, action.payload]}
+            const _product = [...state.products, action.payload];
+            setCookies<IProduct[]>(COOKIES_TYPE.LIST_PRODUCT, _product);
+            return {...state, products: _product}
+        }
         case PRODUCT_TYPE.UPDATE:
             const updatesProducts = state.products.map((item) => item.id === action.payload.id ? action.payload : item)
+            setCookies<IProduct[]>(COOKIES_TYPE.LIST_PRODUCT, updatesProducts);
             return {...state, products: updatesProducts }
         case PRODUCT_TYPE.DELETE:
-            const filtersProducts = state.products.filter((item) => item.id !== action.payload.id)
+            const filtersProducts = state.products.filter((item) => item.id !== action.payload.id);
+            setCookies<IProduct[]>(COOKIES_TYPE.LIST_PRODUCT, filtersProducts);
             return {...state, products: filtersProducts }
         default:
             return state
