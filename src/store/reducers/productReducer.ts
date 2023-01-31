@@ -38,7 +38,17 @@ export const productReducer = (
 ): IProductState => {
     switch (action.type) {
         case PRODUCT_TYPE.CREATE:
-            return state
+            const isExistInList = state.products.filter((item) => item.name === action.payload.name).length > 0;
+            if (isExistInList) {
+                const updatesProducts = state.products.map((item) => {
+                    if (item.name === action.payload.name) {
+                        item.purchased = false;
+                    }
+                    return item
+                })
+                return {...state, products: updatesProducts }
+            }
+            return {...state, products: [...state.products, action.payload]}
         case PRODUCT_TYPE.UPDATE:
             const updatesProducts = state.products.map((item) => item.id === action.payload.id ? action.payload : item)
             return {...state, products: updatesProducts }

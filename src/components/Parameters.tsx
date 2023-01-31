@@ -3,6 +3,7 @@ import {Dropdown} from "react-bootstrap";
 import {deleteProductDispatch} from "../store/dispatches/productDispatch";
 import {useDispatch} from "react-redux";
 import IProduct from "../types/IProduct";
+import {UpdatePopUpState} from "../context/UpdatePopUpContext";
 
 interface ParametersProps {
     product: IProduct,
@@ -10,8 +11,11 @@ interface ParametersProps {
 
 const Parameters: FC<ParametersProps> = ({product}) => {
     const dispatch = useDispatch();
+    const {setUpdatesProductAndChangeShow} = UpdatePopUpState();
 
-    function handleUpdateProduct() {}
+    function handleUpdateProduct() {
+        setUpdatesProductAndChangeShow(product);
+    }
 
     function handleDeleteProduct() {
         deleteProductDispatch({dispatch, product})
