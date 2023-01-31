@@ -13,6 +13,6 @@ export function getCookies<T>(name: string): T | undefined {
 }
 
 export function setCookies<T>(name: string, value: T) {
-    const expires = new Date(new Date().getTime() + 15 * 60 * 1000);
+    const expires = new Date(new Date().getTime() + 1 * 60 * 1000);
     Cookies.set(name, JSON.stringify(value), {expires});
 }

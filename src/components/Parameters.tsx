@@ -23,7 +23,7 @@ const Parameters: FC<ParametersProps> = ({product}) => {
 
     return (
         <Dropdown>
-            <Dropdown.Toggle size="sm" variant="light"></Dropdown.Toggle>
+            <Dropdown.Toggle className="py-0" size="sm" variant="light"></Dropdown.Toggle>
             <Dropdown.Menu>
                 <Dropdown.Item onClick={handleUpdateProduct}>Изменить</Dropdown.Item>
                 <Dropdown.Item onClick={handleDeleteProduct}>Удалить</Dropdown.Item>
